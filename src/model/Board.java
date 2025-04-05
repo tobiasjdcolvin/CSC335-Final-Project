@@ -6,4 +6,7 @@ public class Board {
     private final Word solution;
     private Word guess;
 
+    public Board(Word solution) {
+        this.solution = solution;
+    }
 }
