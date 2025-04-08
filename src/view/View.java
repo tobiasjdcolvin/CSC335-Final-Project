@@ -13,27 +13,60 @@ import model.Model;
 import controller.Controller;
 
 public class View extends JFrame {
+    private TextLabel textLabel;
+    private Controller controller;
 
     public View() {
+        this.controller = new Controller(new Model());
         this.setTitle("Javordle");
         this.setSize(800,600);
         this.setUp();
     }
 
+
     private void setUp() {
-        //setting up the main panel
+        // setting up the main (will be for the game itself) panel
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.darkGray);
+        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
+        textLabel = new TextLabel();
+        controller.addObserver(textLabel);
         this.add(mainPanel);
 
-        // setting up labels
+        // setting up the login page panel
+        JPanel loginPanel = new JPanel();
+        loginPanel.setBackground(Color.darkGray);
+        // TODO: UNCOMMENT AND WORK ON THIS:this.add(loginPanel);
+
+        /* setting up main panel labels */
         JLabel titleLabel = new JLabel();
         titleLabel.setForeground(Color.LIGHT_GRAY);
         titleLabel.setText("Javordle (Java Wordle)");
-        // adding the label to the main panel (if you have any formatting
-        // issues in the future, make sure you tried adding whatever it is to
-        // the main panel, I was stumped for a while here).
+
+        textLabel.setForeground(Color.white);
+        textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // adding the label to the main panel
         mainPanel.add(titleLabel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        mainPanel.add(textLabel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+
+        /* setting up main panel buttons */
+        JButton submitButton = new JButton("Submit");
+        submitButton.setActionCommand("submit");
+        submitButton.addActionListener(controller);
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(submitButton);
+
+
+
+        /* setting up login panel labels */
+        JLabel loginTitleLabel = new JLabel();
+        loginTitleLabel.setForeground(Color.LIGHT_GRAY);
+        loginTitleLabel.setText("Login or Register:");
+        // adding the label to the login panel
+        loginPanel.add(loginTitleLabel);
 
 
         //adding a window listener for closing the app
@@ -45,6 +78,7 @@ public class View extends JFrame {
 
         this.setVisible(true);
     }
+
 
     public static void main(String[] args) {
         View view = new View();
