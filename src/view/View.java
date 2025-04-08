@@ -13,27 +13,50 @@ import model.Model;
 import controller.Controller;
 
 public class View extends JFrame {
+    private Controller controller;
+    private TextLabel textLabel;
 
     public View() {
+        this.controller = new Controller(new Model());
         this.setTitle("Javordle");
         this.setSize(800,600);
+        this.setLocationRelativeTo(null); // center the window
         this.setUp();
+        this.setVisible(true);
     }
 
     private void setUp() {
         //setting up the main panel
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.darkGray);
-        this.add(mainPanel);
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
 
         // setting up labels
-        JLabel titleLabel = new JLabel();
+        JLabel titleLabel = new JLabel("Javordle (Java Wordle)");
         titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setText("Javordle (Java Wordle)");
-        // adding the label to the main panel (if you have any formatting
-        // issues in the future, make sure you tried adding whatever it is to
-        // the main panel, I was stumped for a while here).
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(titleLabel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        
+        // This is where the user inputed text is gonna be displayed when the submit button is pressed
+        textLabel = new TextLabel();
+        controller.addObserver(textLabel);
+        textLabel.setForeground(Color.WHITE);
+        textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(textLabel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        
+        // Setting up button
+        JButton submit = new JButton("Submit");
+        submit.setActionCommand("submit");
+        submit.addActionListener(controller); 
+        submit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(submit);
+        this.add(mainPanel);
 
 
         //adding a window listener for closing the app
@@ -47,6 +70,6 @@ public class View extends JFrame {
     }
 
     public static void main(String[] args) {
-        View view = new View();
+        new View();
     }
 }
