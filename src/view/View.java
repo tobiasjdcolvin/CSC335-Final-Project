@@ -23,61 +23,70 @@ public class View extends JFrame {
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
-        this.setLocationRelativeTo(null); // center the window
+        this.setLocationRelativeTo(null); // centers the window
         this.setUp();
         this.setVisible(true);
     }
 
 
     private void setUp() {
-        // setting up the main (will be for the game itself) panel
-        JPanel mainPanel = new JPanel();
+        // mainPanel now uses BorderLayout
+        JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(Color.darkGray);
-
-        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        textLabel = new TextLabel();
-        textField = new JTextField(5);
-        controller.addObserver(textLabel);
         this.add(mainPanel);
 
-        // setting up the login page panel
-        JPanel loginPanel = new JPanel();
-        loginPanel.setBackground(Color.darkGray);
-        // TODO: UNCOMMENT AND WORK ON THIS:this.add(loginPanel);
+        // center content panel (title and game messages)
+        JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(Color.darkGray);
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-        /* setting up main panel labels */
         JLabel titleLabel = new JLabel("Javordle (Java Wordle)");
         titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-      
+
+        textLabel = new TextLabel();
         textLabel.setForeground(Color.WHITE);
         textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // adding the labels and text field to the main panel
-        mainPanel.add(titleLabel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
-        mainPanel.add(textLabel);
-        mainPanel.add(textField);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        controller.addObserver(textLabel);
 
-        /* setting up main panel buttons */
+        centerPanel.add(titleLabel);
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        centerPanel.add(textLabel);
+
+        // bottom panel for input field and submit button
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.darkGray);
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+
+        textField = new JTextField(20);
+        textField.setMaximumSize(new Dimension(200, 30));
+        textField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton submit = new JButton("Submit");
         submit.setActionCommand("submit");
         submit.addActionListener(controller); 
         submit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(submit);
 
+        bottomPanel.add(textField);
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        bottomPanel.add(submit);
 
-        /* setting up login panel labels */
-        JLabel loginTitleLabel = new JLabel();
+        // optional login panel (currently unused)
+        JPanel loginPanel = new JPanel();
+        loginPanel.setBackground(Color.darkGray);
+
+        JLabel loginTitleLabel = new JLabel("Login or Register:");
         loginTitleLabel.setForeground(Color.LIGHT_GRAY);
-        loginTitleLabel.setText("Login or Register:");
-        // adding the label to the login panel
         loginPanel.add(loginTitleLabel);
+        // TODO: UNCOMMENT AND WORK ON THIS:this.add(loginPanel);
+
+        // add panels to main panel
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
 
 
