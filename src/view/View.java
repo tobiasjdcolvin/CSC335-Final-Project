@@ -15,10 +15,12 @@ import controller.Controller;
 public class View extends JFrame {
 
     private TextLabel textLabel;
+    private JTextField textField;
     private Controller controller;
 
     public View() {
         this.controller = new Controller(new Model());
+        controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
         this.setLocationRelativeTo(null); // center the window
@@ -35,6 +37,7 @@ public class View extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         textLabel = new TextLabel();
+        textField = new JTextField(5);
         controller.addObserver(textLabel);
         this.add(mainPanel);
 
@@ -53,10 +56,11 @@ public class View extends JFrame {
         textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // adding the label to the main panel
+        // adding the labels and text field to the main panel
         mainPanel.add(titleLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         mainPanel.add(textLabel);
+        mainPanel.add(textField);
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
 
         /* setting up main panel buttons */
@@ -85,6 +89,10 @@ public class View extends JFrame {
         });
 
         this.setVisible(true);
+    }
+
+    public String getUserInput() {
+        return this.textField.getText();
     }
 
 

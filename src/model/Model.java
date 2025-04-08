@@ -13,7 +13,13 @@ public class Model {
 
     public void submitUserInput(String text) {
         this.userInput = text;
-        observers.get(0).newText(userInput);
+        if (userInput.length() > 5) {
+            observers.get(0).newText("Your word is more than 5 characters long.");
+        } else if (userInput.length() < 5) {
+            observers.get(0).newText("Your word is less than 5 characters long.");
+        } else {
+            observers.get(0).newText(userInput);
+        }
     }
 
     public void registerObserver(Observer observer) {
