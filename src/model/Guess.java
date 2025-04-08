@@ -1,1 +1,5 @@
-public enum Gues {}
+package model;
+
+public enum Guess {
+    NONE, YELLOW, GREEN;
+}
