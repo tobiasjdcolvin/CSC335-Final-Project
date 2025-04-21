@@ -12,7 +12,7 @@ public class Controller implements ActionListener{
     private View myView;
 
     public Controller(Model model) {
-        this.model = new Model();
+        this.model = model;
     }
 
     @Override
