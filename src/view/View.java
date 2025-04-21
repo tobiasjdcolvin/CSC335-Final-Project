@@ -14,7 +14,13 @@ import controller.Controller;
 
 public class View extends JFrame {
 
+    // 5 labels, one for each character:
     private TextLabel textLabel;
+    private TextLabel textLabel2;
+    private TextLabel textLabel3;
+    private TextLabel textLabel4;
+    private TextLabel textLabel5;
+
     private JTextField textField;
     private Controller controller;
 
@@ -36,6 +42,12 @@ public class View extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         this.add(mainPanel);
 
+        // panel to contain each of the character labels to together create the string
+        JPanel labelPanel = new JPanel();
+        labelPanel.setBackground(Color.darkGray);
+        labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0)); // this makes it so each character is not on a new line.
+        labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // center content panel (title and game messages)
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.darkGray);
@@ -45,17 +57,47 @@ public class View extends JFrame {
         titleLabel.setForeground(Color.LIGHT_GRAY);
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        centerPanel.add(titleLabel);
+
+        // add the panel containing the labels to the center panel
+        centerPanel.add(labelPanel);
 
         textLabel = new TextLabel();
         textLabel.setForeground(Color.WHITE);
         textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         controller.addObserver(textLabel);
 
-        centerPanel.add(titleLabel);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        centerPanel.add(textLabel);
+        textLabel2 = new TextLabel();
+        textLabel2.setForeground(Color.WHITE);
+        textLabel2.setFont(new Font("Arial", Font.PLAIN, 18));
+        textLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controller.addObserver(textLabel2);
+
+        textLabel3 = new TextLabel();
+        textLabel3.setForeground(Color.WHITE);
+        textLabel3.setFont(new Font("Arial", Font.PLAIN, 18));
+        textLabel3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controller.addObserver(textLabel3);
+
+        textLabel4 = new TextLabel();
+        textLabel4.setForeground(Color.WHITE);
+        textLabel4.setFont(new Font("Arial", Font.PLAIN, 18));
+        textLabel4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controller.addObserver(textLabel4);
+
+        textLabel5 = new TextLabel();
+        textLabel5.setForeground(Color.WHITE);
+        textLabel5.setFont(new Font("Arial", Font.PLAIN, 18));
+        textLabel5.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controller.addObserver(textLabel5);
+
+        labelPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        labelPanel.add(textLabel);
+        labelPanel.add(textLabel2);
+        labelPanel.add(textLabel3);
+        labelPanel.add(textLabel4);
+        labelPanel.add(textLabel5);
 
         // bottom panel for input field and submit button
         JPanel bottomPanel = new JPanel();
@@ -82,7 +124,7 @@ public class View extends JFrame {
         JLabel loginTitleLabel = new JLabel("Login or Register:");
         loginTitleLabel.setForeground(Color.LIGHT_GRAY);
         loginPanel.add(loginTitleLabel);
-        // TODO: UNCOMMENT AND WORK ON THIS:this.add(loginPanel);
+
 
         // add panels to main panel
         mainPanel.add(centerPanel, BorderLayout.CENTER);

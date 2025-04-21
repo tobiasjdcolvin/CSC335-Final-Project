@@ -11,6 +11,10 @@ public class Board {
     public Board(Word solution, int size) {
         this.solution = solution;
         this.guessRemaining = size;
+
+        if (this.DEBUG == true) {
+            System.out.println("SOLUTION: " + solution.toString());
+        }
     }
 
     public int getGuessRemaining() {
