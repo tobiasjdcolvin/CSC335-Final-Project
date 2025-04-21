@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LeaderModel {
+    private String username;
     private LeaderView currView;
     private ArrayList<Observer> observers;
 
