@@ -1,7 +1,5 @@
-/* We are using SA6 as an example for how to use Swing,
-* so some of the code is the same as in SA6. Other functionality
-* is from looking through the Swing API and messing around with
-* IntelliJ's auto-complete. */
+/* We used SA6 as a template, and built off of it with some help from AI,
+* which we documented using comments wherever we AI generated something (only here in the View.) */
 package view;
 
 import javax.swing.*;
@@ -13,123 +11,94 @@ import model.Model;
 import controller.Controller;
 
 public class View extends JFrame {
+    private String username;
 
     // 5 labels, one for each character:
-    private TextLabel textLabel;
-    private TextLabel textLabel2;
-    private TextLabel textLabel3;
-    private TextLabel textLabel4;
-    private TextLabel textLabel5;
+    private TextLabel[][] textLabels;
+    private JLabel warrningLabel = new JLabel();
 
     private JTextField textField;
     private Controller controller;
 
-    public View() {
-        this.controller = new Controller(new Model());
+    public View(String username) {
+        this.username = username;
+        this.controller = new Controller(new Model(username));
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
-        this.setLocationRelativeTo(null); // centers the window
+        this.setLocationRelativeTo(null); // centers the window (AI generated)
         this.setUp();
         this.setVisible(true);
     }
 
 
     private void setUp() {
-        // mainPanel now uses BorderLayout
+        // mainPanel (layout is AI generated)
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(Color.darkGray);
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // This is AI generated
         this.add(mainPanel);
 
         // panel to contain each of the character labels to together create the string
-        JPanel labelPanel = new JPanel();
+        // I changed this so it fits the new 2d array
+        // Found out on docs.oracle.com that there is a GridLayout perfect for our array
+        // I dont know how we want the style of the words to look so they are spread out wide asf rn lol
+        JPanel labelPanel = new JPanel(new GridLayout(6,5,2,5));
         labelPanel.setBackground(Color.darkGray);
-        labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0)); // this makes it so each character is not on a new line.
-        labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textLabels = new TextLabel[6][5];
+        for (int row = 0; row < 6; row++){
+            for (int col = 0; col < 5; col++){
+                TextLabel label = new TextLabel();
+                label.setForeground(Color.WHITE);
+                label.setFont(new Font("Arial", Font.PLAIN, 18));
+                textLabels[row][col] = label;
+                labelPanel.add(label);
+                controller.addObserver(label);
+            }
+        }
 
-        // center content panel (title and game messages)
+        // center content panel (Layout is AI generated)
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.darkGray);
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // this layout is AI generated.
 
         JLabel titleLabel = new JLabel("Javordle (Java Wordle)");
         titleLabel.setForeground(Color.LIGHT_GRAY);
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(titleLabel);
+
+        // THIS IS FOR THE WARrNING part
+        titleLabel.setForeground(Color.LIGHT_GRAY);
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        centerPanel.add(warrningLabel);
 
         // add the panel containing the labels to the center panel
         centerPanel.add(labelPanel);
 
-        textLabel = new TextLabel();
-        textLabel.setForeground(Color.WHITE);
-        textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        controller.addObserver(textLabel);
-
-        textLabel2 = new TextLabel();
-        textLabel2.setForeground(Color.WHITE);
-        textLabel2.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
-        controller.addObserver(textLabel2);
-
-        textLabel3 = new TextLabel();
-        textLabel3.setForeground(Color.WHITE);
-        textLabel3.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel3.setAlignmentX(Component.CENTER_ALIGNMENT);
-        controller.addObserver(textLabel3);
-
-        textLabel4 = new TextLabel();
-        textLabel4.setForeground(Color.WHITE);
-        textLabel4.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel4.setAlignmentX(Component.CENTER_ALIGNMENT);
-        controller.addObserver(textLabel4);
-
-        textLabel5 = new TextLabel();
-        textLabel5.setForeground(Color.WHITE);
-        textLabel5.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel5.setAlignmentX(Component.CENTER_ALIGNMENT);
-        controller.addObserver(textLabel5);
-
-        labelPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        labelPanel.add(textLabel);
-        labelPanel.add(textLabel2);
-        labelPanel.add(textLabel3);
-        labelPanel.add(textLabel4);
-        labelPanel.add(textLabel5);
-
-        // bottom panel for input field and submit button
+        // bottom panel (layout is AI generated)
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.darkGray);
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); // layout is AI generated
 
         textField = new JTextField(20);
         textField.setMaximumSize(new Dimension(200, 30));
-        textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textField.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
         JButton submit = new JButton("Submit");
         submit.setActionCommand("submit");
         submit.addActionListener(controller); 
-        submit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        submit.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
         bottomPanel.add(textField);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
         bottomPanel.add(submit);
-
-        // optional login panel (currently unused)
-        JPanel loginPanel = new JPanel();
-        loginPanel.setBackground(Color.darkGray);
-
-        JLabel loginTitleLabel = new JLabel("Login or Register:");
-        loginTitleLabel.setForeground(Color.LIGHT_GRAY);
-        loginPanel.add(loginTitleLabel);
 
 
         // add panels to main panel
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
-
 
 
         //adding a window listener for closing the app
@@ -142,12 +111,12 @@ public class View extends JFrame {
         this.setVisible(true);
     }
 
+    public JLabel getWarrningLabel(){
+        return this.warrningLabel;
+    }
+
     public String getUserInput() {
         return this.textField.getText();
     }
 
-
-    public static void main(String[] args) {
-        new View();
-    }
 }

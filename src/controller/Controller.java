@@ -20,7 +20,15 @@ public class Controller implements ActionListener{
         String command = e.getActionCommand();
         if(command.equals("submit")) {
             String userInput = myView.getUserInput();
-            model.submitUserInput(userInput);
+            // Added this part from Model to have it in here
+            if (userInput.length() > 5) {
+                myView.getWarrningLabel().setText("Your word is more than 5 characters long.");
+            } else if (userInput.length() < 5) {
+                myView.getWarrningLabel().setText("Your word is less than 5 characters long.");
+            } else {
+                myView.getWarrningLabel().setText("");
+                model.submitUserInput(userInput);
+            }
         }
     }
 

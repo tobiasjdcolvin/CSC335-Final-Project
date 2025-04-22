@@ -12,11 +12,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Model {
+    private String username;
     private String userInput;
     private ArrayList<Observer> observers;
     private Board board;
+    private int guessCount = 0;
 
-    public Model() {
+    public Model(String username) {
+        this.username = username;
+        System.out.println("current user: " + this.username);
         // build an ArrayList of words to pick a random one from:
         ArrayList<String> wordList = new ArrayList<String>();
         try  {
@@ -44,28 +48,29 @@ public class Model {
 
     public void submitUserInput(String text) {
         this.userInput = text;
-        if (userInput.length() > 5) {
-            observers.get(0).newText("Your word is more than 5 characters long.", Color.gray);
-        } else if (userInput.length() < 5) {
-            observers.get(0).newText("Your word is less than 5 characters long.", Color.gray);
-        } else {
-            // in this case, the user input is 5 characters long.
+        // this will keep track of the row (one word) observer amount for guesses
+        // since we need to make one for the word, which is made up of 1 per letter, like how tou had it toby
+        int startIndex = guessCount * 5;
 
-            // split the user input into individual characters
-            String[] userInputArr = userInput.split("");
+        // in this case, the user input is 5 characters long.
 
-            // check the guess and output colored strings based upon the result
-            Guess[] guessResult = board.checkWord(new Word(userInput.toLowerCase()));
-            for (int i = 0; i < guessResult.length; i++) {
-                if (guessResult[i] == Guess.GREEN) {
-                    observers.get(i).newText(userInputArr[i], Color.green);
-                }else if (guessResult[i] == Guess.YELLOW) {
-                    observers.get(i).newText(userInputArr[i], Color.yellow);
-                } else {
-                    observers.get(i).newText(userInputArr[i], Color.gray);
-                }
+        // split the user input into individual characters
+        String[] userInputArr = userInput.split("");
+
+        // check the guess and output colored strings based upon the result
+        Guess[] guessResult = board.checkWord(new Word(userInput.toLowerCase()));
+        // made it so that it updates the row observer, which is made up of the 5 observers that toby implemted 
+        for (int i = 0; i < guessResult.length; i++) {
+            Observer obs = observers.get(startIndex + i);
+            if (guessResult[i] == Guess.GREEN) {
+                obs.newText(userInputArr[i], Color.GREEN);
+            }else if (guessResult[i] == Guess.YELLOW) {
+                obs.newText(userInputArr[i], Color.YELLOW);
+            } else {
+                obs.newText(userInputArr[i], Color.GRAY);
             }
         }
+        guessCount++;
     }
 
     public void registerObserver(Observer observer) {
