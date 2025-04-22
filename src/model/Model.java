@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Model {
+    private String username;
     private String userInput;
     private ArrayList<Observer> observers;
     private Board board;
 
-    public Model() {
+    public Model(String username) {
+        this.username = username;
+        System.out.println("current user: " + this.username);
         // build an ArrayList of words to pick a random one from:
         ArrayList<String> wordList = new ArrayList<String>();
         try  {

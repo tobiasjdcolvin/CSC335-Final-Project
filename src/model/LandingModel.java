@@ -17,21 +17,23 @@ import java.util.Random;
 public class LandingModel {
     private LandingView currView;
     private ArrayList<Observer> observers;
+    private String username;
 
-    public LandingModel(LandingView view) {
+    public LandingModel(LandingView view, String username) {
+        this.username = username;
         this.currView = view;
         this.observers = new ArrayList<Observer>();
     }
 
     public boolean play() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
-        View newView = new View();
+        View newView = new View(this.username);
         return true;
     }
 
     public boolean leaderboard() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
-        LeaderView newView = new LeaderView();
+        LeaderView newView = new LeaderView(this.username);
         return true;
     }
 

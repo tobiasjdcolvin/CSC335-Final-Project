@@ -6,10 +6,7 @@ import view.LandingView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,32 +17,66 @@ public class LoginModel {
     private String userInput;
     private LoginView currView;
     private ArrayList<Observer> observers;
+    private ArrayList<String> userList;
 
     public LoginModel(LoginView view) {
         this.currView = view;
-        // build an ArrayList of words to pick a random one from:
-        ArrayList<String> wordList = new ArrayList<String>();
+        // build an ArrayList of all the usernames and passwords
+        userList = new ArrayList<String>();
         try  {
-            BufferedReader myReader = new BufferedReader(new FileReader("src/model/words.txt"));
+            BufferedReader myReader = new BufferedReader(new FileReader("src/store/NamePassStore.txt"));
             String currLine = myReader.readLine();
             while (currLine != null) {
-                // add each line in the words.txt file to the list:
-                wordList.add(currLine.stripTrailing().toLowerCase());
+                // add each line in the txt file to the list:
+                userList.add(currLine.stripTrailing().toLowerCase());
                 currLine = myReader.readLine();
             }
-        } catch (Exception e) {
-            // TODO: do something here in case of an exception
+        } catch (Exception exc) {
+            System.out.println("Unable to read NamePassStore.txt");
         }
 
         this.observers = new ArrayList<Observer>();
     }
 
     public boolean submitUserLogin(String username, String password) {
-        // TODO: actually handle checking user login here
+        if (userList.contains(username.toLowerCase() + " " + password.toLowerCase())) {
+            for (String currUser : userList) {
+                if (currUser.equals(username.toLowerCase() + " " + password.toLowerCase())) {
+                    // if the user successfully logs in, do this:
+                    currView.dispose(); // found this in a YouTube tutorial for changing windows
+                    LandingView newView = new LandingView(username);
+                    return true;
+                }
+            }
+        }
+        observers.get(0).newText("Unable to login, please try again.", Color.lightGray);
+        return false;
+    }
 
-        // if the user successfully logs in, do this:
-        currView.dispose(); // found this in a YouTube tutorial for changing windows
-        LandingView newView = new LandingView();
+    public boolean submitUserRegister(String username, String password) {
+        // first check if the user already exists:
+        ArrayList<String> usernames = new ArrayList<String>();
+        for (String userNameCurr : userList) {
+            String currName = userNameCurr.split(" ")[0];
+            if (currName.toLowerCase().equals(username.toLowerCase())) {
+                observers.get(0).newText("Unable to register, please try again.", Color.lightGray);
+                return false;
+            }
+        }
+
+        // add username and password to both the file and the userList
+        String combinedNamePass = username + " " + password;
+
+        try (FileWriter myFW = new FileWriter(new File("src/store/NamePassStore.txt"), true);
+             BufferedWriter myBW = new BufferedWriter(myFW)) {
+             myBW.write(combinedNamePass + "\n");
+        } catch (Exception exc) {
+            observers.get(0).newText("Unable to register, please try again.", Color.lightGray);
+            return false;
+        }
+
+        userList.add(combinedNamePass);
+        observers.get(0).newText("Successfully registered. Please login.", Color.lightGray);
         return true;
     }
 

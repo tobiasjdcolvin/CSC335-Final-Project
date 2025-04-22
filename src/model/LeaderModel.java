@@ -17,7 +17,9 @@ public class LeaderModel {
     private LeaderView currView;
     private ArrayList<Observer> observers;
 
-    public LeaderModel(LeaderView view) {
+    public LeaderModel(LeaderView view, String username) {
+        this.username = username;
+        System.out.println("current user: " + this.username);
         this.currView = view;
         this.observers = new ArrayList<Observer>();
     }

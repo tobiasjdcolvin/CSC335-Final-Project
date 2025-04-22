@@ -9,10 +9,12 @@ import model.LeaderModel;
 import controller.LeaderController;
 
 public class LeaderView extends JFrame {
+    private String username;
     private LeaderController controller;
 
-    public LeaderView() {
-        this.controller = new LeaderController(new LeaderModel(this));
+    public LeaderView(String username) {
+        this.username = username;
+        this.controller = new LeaderController(new LeaderModel(this, username));
         controller.setMyView(this);
         this.setTitle("Leaderboard");
         this.setSize(800,600);
@@ -61,7 +63,4 @@ public class LeaderView extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new View();
-    }
 }
