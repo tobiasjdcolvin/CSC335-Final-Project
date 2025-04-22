@@ -9,10 +9,12 @@ import model.LandingModel;
 import controller.LandingController;
 
 public class LandingView extends JFrame {
+    private String username;
     private LandingController controller;
 
-    public LandingView() {
-        this.controller = new LandingController(new LandingModel(this));
+    public LandingView(String username) {
+        this.username = username;
+        this.controller = new LandingController(new LandingModel(this, username));
         controller.setMyView(this);
         this.setTitle("Landing Page");
         this.setSize(800,600);
@@ -74,7 +76,4 @@ public class LandingView extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new View();
-    }
 }

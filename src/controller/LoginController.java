@@ -22,7 +22,10 @@ public class LoginController implements ActionListener{
             String inputUsername = myView.getLoginUsername();
             String inputPassword = myView.getLoginPassword();
             boolean successLogin = model.submitUserLogin(inputUsername, inputPassword);
-            // TODO: handle non-successful user login attempts
+        } else if (command.equals("register")) {
+            String inputUsername = myView.getRegisterUsername();
+            String inputPassword = myView.getRegisterPassword();
+            boolean successRegister = model.submitUserRegister(inputUsername.toLowerCase(), inputPassword.toLowerCase());
         }
     }
 

@@ -74,6 +74,11 @@ public class LoginView extends JFrame {
         register.addActionListener(controller);
         register.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
+        TextLabel responseMessageLabel = new TextLabel();
+        responseMessageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
+        responseMessageLabel.setForeground(Color.lightGray);
+        controller.addObserver(responseMessageLabel);
+
         centerPanel.add(loginUsername);
         centerPanel.add(loginPassword);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
@@ -84,6 +89,7 @@ public class LoginView extends JFrame {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         centerPanel.add(register);
+        centerPanel.add(responseMessageLabel);
 
         // add panels to main panel
         mainPanel.add(centerPanel, BorderLayout.CENTER); // AI generated layout
@@ -116,7 +122,7 @@ public class LoginView extends JFrame {
 
 
     public static void main(String[] args) {
-        new View();
+        new LoginView();
     }
 }
 

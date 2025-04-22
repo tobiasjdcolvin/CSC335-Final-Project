@@ -11,6 +11,7 @@ import model.Model;
 import controller.Controller;
 
 public class View extends JFrame {
+    private String username;
 
     // 5 labels, one for each character:
     private TextLabel textLabel;
@@ -22,8 +23,9 @@ public class View extends JFrame {
     private JTextField textField;
     private Controller controller;
 
-    public View() {
-        this.controller = new Controller(new Model());
+    public View(String username) {
+        this.username = username;
+        this.controller = new Controller(new Model(username));
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
@@ -136,8 +138,4 @@ public class View extends JFrame {
         return this.textField.getText();
     }
 
-
-    public static void main(String[] args) {
-        new View();
-    }
 }
