@@ -15,8 +15,10 @@ public class Model {
     private String userInput;
     private ArrayList<Observer> observers;
     private Board board;
+
     // I dont know if we are limiting to only 6 guesses so i added this so we could limit
-    private int guessCount = 0; 
+    private int guessCount = 0;
+
 
     public Model() {
         // build an ArrayList of words to pick a random one from:

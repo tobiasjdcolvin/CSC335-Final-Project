@@ -11,6 +11,8 @@ import model.Model;
 import controller.Controller;
 
 public class View extends JFrame {
+    private String username;
+    
 
     // 5 labels, one for each character:
     // Gonna change this to a 2D array since we gotta have 6 guess of 5 letters
@@ -111,15 +113,12 @@ public class View extends JFrame {
         this.setVisible(true);
     }
 
-    public String getUserInput() {
-        return this.textField.getText();
-    }
-
     public JLabel getWarrningLabel(){
         return this.warrningLabel;
     }
 
-    public static void main(String[] args) {
-        new View();
+    public String getUserInput() {
+        return this.textField.getText();
     }
+
 }
