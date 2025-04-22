@@ -13,11 +13,11 @@ import controller.Controller;
 public class View extends JFrame {
 
     // 5 labels, one for each character:
-    private TextLabel textLabel;
-    private TextLabel textLabel2;
-    private TextLabel textLabel3;
-    private TextLabel textLabel4;
-    private TextLabel textLabel5;
+    // Gonna change this to a 2D array since we gotta have 6 guess of 5 letters
+    // So removed each individual textLabel1->5
+    private TextLabel[][] textLabels;
+    private JLabel warrningLabel = new JLabel();
+
 
     private JTextField textField;
     private Controller controller;
@@ -27,7 +27,6 @@ public class View extends JFrame {
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
-        this.setLocationRelativeTo(null); // centers the window (AI generated)
         this.setUp();
         this.setVisible(true);
     }
@@ -41,11 +40,22 @@ public class View extends JFrame {
         this.add(mainPanel);
 
         // panel to contain each of the character labels to together create the string
-        JPanel labelPanel = new JPanel();
+        // I changed this so it fits the new 2d array
+        // Found out on docs.oracle.com that there is a GridLayout perfect for our array
+        // I dont know how we want the style of the words to look so they are spread out wide asf rn lol
+        JPanel labelPanel = new JPanel(new GridLayout(6,5,2,5));
         labelPanel.setBackground(Color.darkGray);
-        // the layout was generated using AI.
-        labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0)); // (AI generated) this makes it so each character is not on a new line.
-        labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textLabels = new TextLabel[6][5];
+        for (int row = 0; row < 6; row++){
+            for (int col = 0; col < 5; col++){
+                TextLabel label = new TextLabel();
+                label.setForeground(Color.WHITE);
+                label.setFont(new Font("Arial", Font.PLAIN, 18));
+                textLabels[row][col] = label;
+                labelPanel.add(label);
+                controller.addObserver(label);
+            }
+        }
 
         // center content panel (Layout is AI generated)
         JPanel centerPanel = new JPanel();
@@ -58,45 +68,14 @@ public class View extends JFrame {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(titleLabel);
 
+        // THIS IS FOR THE WARrNING part
+        titleLabel.setForeground(Color.LIGHT_GRAY);
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        centerPanel.add(warrningLabel);
+
         // add the panel containing the labels to the center panel
         centerPanel.add(labelPanel);
-
-        textLabel = new TextLabel();
-        textLabel.setForeground(Color.WHITE);
-        textLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // AI generated
-        controller.addObserver(textLabel);
-
-        textLabel2 = new TextLabel();
-        textLabel2.setForeground(Color.WHITE);
-        textLabel2.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel2.setAlignmentX(Component.CENTER_ALIGNMENT); // AI generated
-        controller.addObserver(textLabel2);
-
-        textLabel3 = new TextLabel();
-        textLabel3.setForeground(Color.WHITE);
-        textLabel3.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel3.setAlignmentX(Component.CENTER_ALIGNMENT); // AI generated
-        controller.addObserver(textLabel3);
-
-        textLabel4 = new TextLabel();
-        textLabel4.setForeground(Color.WHITE);
-        textLabel4.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel4.setAlignmentX(Component.CENTER_ALIGNMENT); // AI generated
-        controller.addObserver(textLabel4);
-
-        textLabel5 = new TextLabel();
-        textLabel5.setForeground(Color.WHITE);
-        textLabel5.setFont(new Font("Arial", Font.PLAIN, 18));
-        textLabel5.setAlignmentX(Component.CENTER_ALIGNMENT); // AI generated
-        controller.addObserver(textLabel5);
-
-        labelPanel.add(Box.createRigidArea(new Dimension(0, 20))); // This line is AI generated
-        labelPanel.add(textLabel);
-        labelPanel.add(textLabel2);
-        labelPanel.add(textLabel3);
-        labelPanel.add(textLabel4);
-        labelPanel.add(textLabel5);
 
         // bottom panel (layout is AI generated)
         JPanel bottomPanel = new JPanel();
@@ -136,6 +115,9 @@ public class View extends JFrame {
         return this.textField.getText();
     }
 
+    public JLabel getWarrningLabel(){
+        return this.warrningLabel;
+    }
 
     public static void main(String[] args) {
         new View();
