@@ -68,10 +68,10 @@ public class View extends JFrame {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(titleLabel);
 
-        // THIS IS FOR THE WARrNING part
-        titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        // warrning label formatting (lets keep the typo its funny)
+        warrningLabel.setForeground(Color.LIGHT_GRAY);
+        warrningLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        warrningLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(warrningLabel);
 
         // add the panel containing the labels to the center panel
