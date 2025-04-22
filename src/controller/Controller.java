@@ -6,6 +6,7 @@ import view.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class Controller implements ActionListener{
     private Model model;
@@ -25,7 +26,13 @@ public class Controller implements ActionListener{
                 myView.getWarrningLabel().setText("Your word is more than 5 characters long.");
             } else if (userInput.length() < 5) {
                 myView.getWarrningLabel().setText("Your word is less than 5 characters long.");
-            } else {
+            }else if(!Model.getWordList().contains(userInput)) {
+            	myView.getWarrningLabel().setText("Your word is not a valid word.");
+            }
+            else if(Arrays.asList(Model.getGuesses()).contains(userInput)) {
+            	myView.getWarrningLabel().setText("Your have already guess this word.");
+            }
+            else {
                 myView.getWarrningLabel().setText("");
                 model.submitUserInput(userInput);
             }
