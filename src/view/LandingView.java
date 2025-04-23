@@ -56,10 +56,20 @@ public class LandingView extends JFrame {
         leaderboard.addActionListener(controller);
         leaderboard.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
+        JButton logout = new JButton("Logout");
+        logout.setActionCommand("logout");
+        logout.addActionListener(controller);
+        logout.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
+
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         centerPanel.add(play);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         centerPanel.add(leaderboard);
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        centerPanel.add(logout);
 
         // add panels to main panel
         mainPanel.add(centerPanel, BorderLayout.CENTER); // AI generated layout

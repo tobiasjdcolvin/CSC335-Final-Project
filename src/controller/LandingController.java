@@ -22,6 +22,8 @@ public class LandingController implements ActionListener{
             model.play();
         } else if (command.equals("leaderboard")) {
             model.leaderboard();
+        } else if (command.equals("logout")) {
+            model.logout();
         }
     }
 
