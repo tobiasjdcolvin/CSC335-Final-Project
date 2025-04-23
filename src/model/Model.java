@@ -1,20 +1,17 @@
 package model;
 
 import view.LandingView;
-import view.LoginView;
+
+import view.LoserView;
 import view.Observer;
 import view.View;
-
-import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Arrays;
+
 
 public class Model {
     private View currView;
@@ -81,10 +78,19 @@ public class Model {
             if (correct){
                 return true;
             }
-    	}
+    	} else{
+            lose();
+        }
         return false;
     }
 
+
+    private void lose() {
+        // TODO Auto-generated method stub
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LoserView newView = new LoserView(this.username);
+        
+    }
 
     public void back() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
