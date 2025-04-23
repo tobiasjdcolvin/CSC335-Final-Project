@@ -122,11 +122,20 @@ public class View extends JFrame {
     }
 
     public JLabel getWarrningLabel(){
+        warrningLabel.setForeground(Color.white);
         return this.warrningLabel;
     }
 
     public String getUserInput() {
         return this.textField.getText();
+    }
+
+
+    public void victory() {
+        // TODO Auto-generated method stub
+        System.out.println("YOU WIN");
+        this.dispose();
+        VictoryView view = new VictoryView(username);    
     }
 
 }

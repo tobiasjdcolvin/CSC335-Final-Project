@@ -33,8 +33,12 @@ public class Controller implements ActionListener{
             	myView.getWarrningLabel().setText("You have already guessed this word.");
             }
             else {
+                // Added this part
                 myView.getWarrningLabel().setText("");
-                model.submitUserInput(userInput);
+                boolean endCon = model.submitUserInput(userInput);
+                if (endCon == true){
+                    myView.victory();
+                }
             }
         } else if (command.equals("back")) {
             model.back();
