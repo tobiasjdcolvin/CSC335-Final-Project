@@ -68,10 +68,10 @@ public class View extends JFrame {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(titleLabel);
 
-        // THIS IS FOR THE WARrNING part
-        titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        // warrning label formatting (lets keep the typo its funny)
+        warrningLabel.setForeground(Color.LIGHT_GRAY);
+        warrningLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        warrningLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(warrningLabel);
 
         // add the panel containing the labels to the center panel
@@ -112,11 +112,20 @@ public class View extends JFrame {
     }
 
     public JLabel getWarrningLabel(){
+        warrningLabel.setForeground(Color.white);
         return this.warrningLabel;
     }
 
     public String getUserInput() {
         return this.textField.getText();
+    }
+
+
+    public void victory() {
+        // TODO Auto-generated method stub
+        System.out.println("YOU WIN");
+        this.dispose();
+        VictoryView view = new VictoryView(username);    
     }
 
 }

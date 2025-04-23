@@ -1,6 +1,8 @@
 package model;
 
 import view.Observer;
+import view.VictoryView;
+import view.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +40,7 @@ public class Model {
         this.observers = new ArrayList<Observer>();
     }
 
-    public void submitUserInput(String text) {
+    public boolean submitUserInput(String text) {
     	if(board.getGuessRemaining()!=0) {
 	    	this.userInput = text;
 	        // this will keep track of the row (one word) observer amount for guesses
@@ -65,16 +67,21 @@ public class Model {
 	        }
 	        guessList[guessCount] = userInput.toLowerCase();
 	        guessCount++;
+            //this is added part
+            boolean correct = true;
+            for (Guess guess : guessResult){
+                if (guess != Guess.GREEN){
+                    correct = false;
+                    break;
+                }
+            }
+            if (correct){
+                return true;
+            }
     	}
-    	else {
-    		endGame();
-    	}
-        
+        return false;
     }
     
-    public void endGame() {
-    	// TODO: do something here
-    }
 
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
