@@ -38,6 +38,11 @@ public class VictoryModel {
         return true;
     }
 
+    public void back() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LandingView newView = new LandingView(this.username);
+    }
+
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
     }

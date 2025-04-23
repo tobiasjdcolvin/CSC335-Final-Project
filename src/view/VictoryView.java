@@ -63,17 +63,20 @@ public class VictoryView extends JFrame {
         leaderboard.addActionListener(controller);
         leaderboard.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
-        JButton exit = new JButton("Exit");
-        exit.setActionCommand("exit");
-        exit.addActionListener(controller);
-        exit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton back = new JButton("Back");
+        back.setActionCommand("back");
+        back.addActionListener(controller);
+        back.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         centerPanel.add(play);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
         centerPanel.add(leaderboard);
-        centerPanel.add(exit);
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        centerPanel.add(back);
 
         // add panels to main panel
         mainPanel.add(centerPanel, BorderLayout.CENTER); // AI generated layout

@@ -23,6 +23,8 @@ public class VictoryController implements ActionListener{
             model.play();
         } else if (command.equals("leaderboard")) {
             model.leaderboard();
+        } else if (command.equals("back")){
+            model.back();
         }
     }
 
