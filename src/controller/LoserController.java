@@ -1,17 +1,18 @@
 package controller;
 
-import model.LandingModel;
+import model.LoserModel;
 import view.Observer;
-import view.LandingView;
+import view.LoserView;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LandingController implements ActionListener{
-    private LandingModel model;
-    private LandingView myView;
+public class LoserController implements ActionListener{
+    private LoserModel model;
+    private LoserView myView;
 
-    public LandingController(LandingModel model) {
+    public LoserController(LoserModel model) {
         this.model = model;
     }
 
@@ -22,12 +23,12 @@ public class LandingController implements ActionListener{
             model.play();
         } else if (command.equals("leaderboard")) {
             model.leaderboard();
-        } else if (command.equals("logout")) {
-            model.logout();
+        } else if (command.equals("back")){
+            model.back();
         }
     }
 
-    public void setMyView(LandingView view) {
+    public void setMyView(LoserView view) {
         this.myView = view;
     }
 

@@ -1,19 +1,20 @@
 package model;
 
-import view.Observer;
+import view.LandingView;
 
-import javax.swing.*;
+import view.LoserView;
+import view.Observer;
+import view.View;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Arrays;
+
 
 public class Model {
+    private View currView;
     private String username;
     private String userInput;
     private ArrayList<Observer> observers;
@@ -21,7 +22,8 @@ public class Model {
     private int guessCount = 0;
     private static String[] guessList = new String[5];
 
-    public Model(String username) {
+    public Model(String username, View view) {
+        this.currView = view;
         this.username = username;
         System.out.println("current user: " + this.username);
         // build an ArrayList of words to pick a random one from:
@@ -38,7 +40,7 @@ public class Model {
         this.observers = new ArrayList<Observer>();
     }
 
-    public void submitUserInput(String text) {
+    public boolean submitUserInput(String text) {
     	if(board.getGuessRemaining()!=0) {
 	    	this.userInput = text;
 	        // this will keep track of the row (one word) observer amount for guesses
@@ -65,15 +67,34 @@ public class Model {
 	        }
 	        guessList[guessCount] = userInput.toLowerCase();
 	        guessCount++;
-    	}
-    	else {
-    		endGame();
-    	}
+            //this is added part
+            boolean correct = true;
+            for (Guess guess : guessResult){
+                if (guess != Guess.GREEN){
+                    correct = false;
+                    break;
+                }
+            }
+            if (correct){
+                return true;
+            }
+    	} else{
+            lose();
+        }
+        return false;
+    }
+
+
+    private void lose() {
+        // TODO Auto-generated method stub
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LoserView newView = new LoserView(this.username);
         
     }
-    
-    public void endGame() {
-    	// TODO: do something here
+
+    public void back() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LandingView newView = new LandingView(this.username);
     }
 
     public void registerObserver(Observer observer) {

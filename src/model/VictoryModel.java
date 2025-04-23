@@ -1,6 +1,10 @@
 package model;
 
-import view.*;
+import view.LandingView;
+import view.LeaderView;
+import view.Observer;
+import view.VictoryView;
+import view.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,12 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LandingModel {
-    private LandingView currView;
+public class VictoryModel {
+    private VictoryView currView;
     private ArrayList<Observer> observers;
     private String username;
 
-    public LandingModel(LandingView view, String username) {
+    public VictoryModel(VictoryView view, String username) {
         this.username = username;
         this.currView = view;
         this.observers = new ArrayList<Observer>();
@@ -28,16 +32,15 @@ public class LandingModel {
         return true;
     }
 
-    public boolean logout() {
-        currView.dispose(); // found this in a YouTube tutorial for changing windows
-        LoginView newView = new LoginView();
-        return true;
-    }
-
     public boolean leaderboard() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
         LeaderView newView = new LeaderView(this.username);
         return true;
+    }
+
+    public void back() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LandingView newView = new LandingView(this.username);
     }
 
     public void registerObserver(Observer observer) {

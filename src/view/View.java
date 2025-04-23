@@ -22,7 +22,7 @@ public class View extends JFrame {
 
     public View(String username) {
         this.username = username;
-        this.controller = new Controller(new Model(username));
+        this.controller = new Controller(new Model(username, this));
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
@@ -68,10 +68,10 @@ public class View extends JFrame {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(titleLabel);
 
-        // THIS IS FOR THE WARrNING part
-        titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        // warrning label formatting (lets keep the typo its funny)
+        warrningLabel.setForeground(Color.LIGHT_GRAY);
+        warrningLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        warrningLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(warrningLabel);
 
         // add the panel containing the labels to the center panel
@@ -91,9 +91,19 @@ public class View extends JFrame {
         submit.addActionListener(controller); 
         submit.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+
+        JButton back = new JButton("Back");
+        back.setActionCommand("back");
+        back.addActionListener(controller);
+        back.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
+
         bottomPanel.add(textField);
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
         bottomPanel.add(submit);
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
+        bottomPanel.add(back);
 
 
         // add panels to main panel
@@ -112,11 +122,20 @@ public class View extends JFrame {
     }
 
     public JLabel getWarrningLabel(){
+        warrningLabel.setForeground(Color.white);
         return this.warrningLabel;
     }
 
     public String getUserInput() {
         return this.textField.getText();
+    }
+
+
+    public void victory() {
+        // TODO Auto-generated method stub
+        System.out.println("YOU WIN");
+        this.dispose();
+        VictoryView view = new VictoryView(username);    
     }
 
 }
