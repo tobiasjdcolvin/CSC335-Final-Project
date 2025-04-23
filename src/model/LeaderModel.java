@@ -1,5 +1,6 @@
 package model;
 
+import view.LandingView;
 import view.LeaderView;
 import view.Observer;
 
@@ -22,6 +23,11 @@ public class LeaderModel {
         System.out.println("current user: " + this.username);
         this.currView = view;
         this.observers = new ArrayList<Observer>();
+    }
+
+    public void back() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LandingView newView = new LandingView(this.username);
     }
 
     public void registerObserver(Observer observer) {

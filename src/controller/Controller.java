@@ -36,6 +36,8 @@ public class Controller implements ActionListener{
                 myView.getWarrningLabel().setText("");
                 model.submitUserInput(userInput);
             }
+        } else if (command.equals("back")) {
+            model.back();
         }
     }
 
