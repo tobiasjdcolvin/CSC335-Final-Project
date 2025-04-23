@@ -22,7 +22,7 @@ public class View extends JFrame {
 
     public View(String username) {
         this.username = username;
-        this.controller = new Controller(new Model(username));
+        this.controller = new Controller(new Model(username, this));
         controller.setMyView(this);
         this.setTitle("Javordle");
         this.setSize(800,600);
@@ -91,9 +91,19 @@ public class View extends JFrame {
         submit.addActionListener(controller); 
         submit.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // AI generated
+
+        JButton back = new JButton("Back");
+        back.setActionCommand("back");
+        back.addActionListener(controller);
+        back.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
+
         bottomPanel.add(textField);
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
         bottomPanel.add(submit);
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
+        bottomPanel.add(back);
 
 
         // add panels to main panel

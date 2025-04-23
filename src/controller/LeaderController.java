@@ -18,8 +18,8 @@ public class LeaderController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if(command.equals("TEST")) {
-            // HANDLE YOUR COMMANDS HERE
+        if(command.equals("back")) {
+            model.back();
         }
     }
 

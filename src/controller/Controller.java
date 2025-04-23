@@ -30,7 +30,7 @@ public class Controller implements ActionListener{
             	myView.getWarrningLabel().setText("Your word is not a valid word.");
             }
             else if(Arrays.asList(Model.getGuesses()).contains(userInput)) {
-            	myView.getWarrningLabel().setText("You have already guess this word.");
+            	myView.getWarrningLabel().setText("You have already guessed this word.");
             }
             else {
                 // Added this part
@@ -40,6 +40,8 @@ public class Controller implements ActionListener{
                     myView.victory();
                 }
             }
+        } else if (command.equals("back")) {
+            model.back();
         }
     }
 

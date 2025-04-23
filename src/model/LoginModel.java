@@ -19,6 +19,8 @@ public class LoginModel {
     private ArrayList<Observer> observers;
     private ArrayList<String> userList;
 
+    private boolean DEBUG = true;
+
     public LoginModel(LoginView view) {
         this.currView = view;
         // build an ArrayList of all the usernames and passwords
@@ -28,7 +30,7 @@ public class LoginModel {
             String currLine = myReader.readLine();
             while (currLine != null) {
                 // add each line in the txt file to the list:
-                userList.add(currLine.stripTrailing().toLowerCase());
+                userList.add(currLine.stripTrailing());
                 currLine = myReader.readLine();
             }
         } catch (Exception exc) {
@@ -39,18 +41,28 @@ public class LoginModel {
     }
 
     public boolean submitUserLogin(String username, String password) {
-        if (userList.contains(username.toLowerCase() + " " + password.toLowerCase())) {
+        //if (userList.contains(username.toLowerCase() + " " + password.toLowerCase())) {
             for (String currUser : userList) {
-                if (currUser.equals(username.toLowerCase() + " " + password.toLowerCase())) {
+                if (passwordCheck(currUser, username, password)) {
                     // if the user successfully logs in, do this:
                     currView.dispose(); // found this in a YouTube tutorial for changing windows
                     LandingView newView = new LandingView(username);
                     return true;
                 }
             }
-        }
+        //}
         observers.get(0).newText("Unable to login, please try again.", Color.lightGray);
         return false;
+    }
+
+    private boolean passwordCheck(String currUser, String username, String password) {
+        String currUsername = currUser.split(" ")[0];
+        String currPassword = currUser.split(" ")[1];
+        String salt = currUser.split(" ")[2];
+        String hashedPassword = hash(password, salt);
+        if (DEBUG) System.out.println("CurrUser:" + currUser);
+        if (DEBUG) System.out.println("Given:" + username + " " + password + " " + salt);
+        return currUsername.equals(username) && hashedPassword.equals(currPassword);
     }
 
     public boolean submitUserRegister(String username, String password) {
@@ -63,9 +75,9 @@ public class LoginModel {
                 return false;
             }
         }
-
+        String salt = createSalt();
         // add username and password to both the file and the userList
-        String combinedNamePass = username + " " + password;
+        String combinedNamePass = username + " " + hash(password, salt) + " " + salt;
 
         try (FileWriter myFW = new FileWriter(new File("src/store/NamePassStore.txt"), true);
              BufferedWriter myBW = new BufferedWriter(myFW)) {

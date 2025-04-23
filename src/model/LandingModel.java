@@ -1,9 +1,6 @@
 package model;
 
-import view.LandingView;
-import view.LeaderView;
-import view.Observer;
-import view.View;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +25,12 @@ public class LandingModel {
     public boolean play() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
         View newView = new View(this.username);
+        return true;
+    }
+
+    public boolean logout() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LoginView newView = new LoginView();
         return true;
     }
 

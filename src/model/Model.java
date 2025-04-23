@@ -1,7 +1,8 @@
 package model;
 
+import view.LandingView;
+import view.LoginView;
 import view.Observer;
-import view.VictoryView;
 import view.View;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ import java.util.Random;
 import java.util.Arrays;
 
 public class Model {
+    private View currView;
     private String username;
     private String userInput;
     private ArrayList<Observer> observers;
@@ -23,7 +25,8 @@ public class Model {
     private int guessCount = 0;
     private static String[] guessList = new String[5];
 
-    public Model(String username) {
+    public Model(String username, View view) {
+        this.currView = view;
         this.username = username;
         System.out.println("current user: " + this.username);
         // build an ArrayList of words to pick a random one from:
@@ -81,7 +84,12 @@ public class Model {
     	}
         return false;
     }
-    
+
+
+    public void back() {
+        currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LandingView newView = new LandingView(this.username);
+    }
 
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
