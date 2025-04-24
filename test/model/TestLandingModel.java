@@ -7,7 +7,7 @@ import view.Observer;
 
 import java.awt.*;
 
-public class LandingModelTest {
+public class TestLandingModel {
     public class myObserver implements Observer{
         @Override
         public void newText(String text, Color color) {
