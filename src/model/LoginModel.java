@@ -70,6 +70,10 @@ public class LoginModel {
         return false;
     }
 
+    public void removeDebug() {
+        this.DEBUG = false;
+    }
+
     private boolean passwordCheck(String currUser, String username, String password) {
         String currUsername = currUser.split(", ")[0];
         
@@ -126,6 +130,10 @@ public class LoginModel {
             salt += charSet.charAt(random.nextInt(charSet.length()));
         }
         return salt;
+    }
+
+    public int getObserversLen() {
+        return this.observers.size();
     }
 
     private static String hash(String password, String salt) {
