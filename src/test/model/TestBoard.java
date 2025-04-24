@@ -26,4 +26,19 @@ public class TestBoard {
         assertFalse(4 == board.getGuessRemaining());
     }
 
+	@Test
+
+ 
+
+    public void testGuess2() {
+        Guess[] answer = {Guess.GREEN, Guess.GREEN, Guess.YELLOW, Guess.YELLOW, Guess.NONE};
+        //assertTrue(answer.equals(board.checkWord(new Word("aplpm"))));
+        for(int i = 0; i < 5; i++) {
+        	assertEquals(answer[i], board.checkWord(new Word("aplpm"))[i]);
+        	assertEquals((5-i),board.getGuessRemaining());
+        }
+        assertEquals(1, board.getGuessRemaining());
+        assertFalse(4 == board.getGuessRemaining());
+    }
+
 }
