@@ -12,11 +12,17 @@ public class TestBoard {
     @Test
     public void testGetter() {
         assertEquals(6, board.getGuessRemaining());
+        board.toggleDebug();
+        assertEquals(6, board.getGuessRemaining());
     }
 
     @Test
     public void testGuess() {
         Guess[] answer = {Guess.GREEN, Guess.GREEN, Guess.YELLOW, Guess.YELLOW, Guess.NONE};
         assertEquals(answer, board.checkWord(new Word("aplpm")));
+        board.toggleDebug();
+        assertEquals(answer, board.checkWord(new Word("aplpm")));
     }
+
+
 }

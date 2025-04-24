@@ -52,4 +52,9 @@ public class Board {
         }
         return ret;
     }
+
+    public boolean toggleDebug() {
+        this.DEBUG = !this.DEBUG;
+        return this.DEBUG;
+    }
 }
