@@ -28,6 +28,10 @@ public class LandingModel {
         return true;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public boolean logout() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
         LoginView newView = new LoginView();
