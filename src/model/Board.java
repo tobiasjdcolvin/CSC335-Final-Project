@@ -1,3 +1,7 @@
+package model;
+
+
+public class Board {
 private boolean DEBUG = true;
 
 private final model.Word solution;
@@ -53,3 +57,4 @@ return ret;
         this.DEBUG = !this.DEBUG;
         return this.DEBUG;
     }
+}
