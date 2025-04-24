@@ -4,7 +4,7 @@ import model.Guess;
 import model.Word;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestBoard {
     private Board board = new Board(new Word("apple"),6);
@@ -25,4 +25,5 @@ public class TestBoard {
         assertEquals(1, board.getGuessRemaining());
         assertFalse(4 == board.getGuessRemaining());
     }
+
 }
