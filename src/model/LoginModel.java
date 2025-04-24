@@ -70,6 +70,10 @@ public class LoginModel {
         return false;
     }
 
+    public void removeDebug() {
+        this.DEBUG = false;
+    }
+
     private boolean passwordCheck(String currUser, String username, String password) {
         String currUsername = currUser.split(", ")[0];
         
@@ -128,6 +132,10 @@ public class LoginModel {
         return salt;
     }
 
+    public int getObserversLen() {
+        return this.observers.size();
+    }
+
     private static String hash(String password, String salt) {
         password = password+salt;
         try {
@@ -156,7 +164,7 @@ public class LoginModel {
     	return new int[] {users.get(username)[0], users.get(username)[1]};
     }
     
-    protected static void updateUserWinLoss(String username, int win, int loss) {
+    public static void updateUserWinLoss(String username, int win, int loss) {
     	users.get(username)[0] += win;
     	users.get(username)[1] += loss;
     	updateUserData(username);
