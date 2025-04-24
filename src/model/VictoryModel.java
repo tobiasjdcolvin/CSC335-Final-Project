@@ -38,9 +38,10 @@ public class VictoryModel {
         return true;
     }
 
-    public void back() {
+    public boolean back() {
         currView.dispose(); // found this in a YouTube tutorial for changing windows
         LandingView newView = new LandingView(this.username);
+        return true;
     }
 
     public void registerObserver(Observer observer) {
@@ -49,5 +50,9 @@ public class VictoryModel {
 
     public void deregisterObserver(Observer observer) {
         this.observers.remove(observer);
+    }
+    
+    public String getUsername() {
+    	return this.username;
     }
 }
