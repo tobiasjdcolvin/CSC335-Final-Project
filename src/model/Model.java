@@ -76,6 +76,7 @@ public class Model {
                 }
             }
             if (correct){
+            	LoginModel.updateUserWinLoss(this.username,1,0);
                 return true;
             }
     	} else{
@@ -88,6 +89,7 @@ public class Model {
     private void lose() {
         // TODO Auto-generated method stub
         currView.dispose(); // found this in a YouTube tutorial for changing windows
+        LoginModel.updateUserWinLoss(this.username,0,1);
         LoserView newView = new LoserView(this.username);
         
     }
