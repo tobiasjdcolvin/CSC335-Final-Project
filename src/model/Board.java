@@ -1,5 +1,5 @@
 package model;
-
+import model.LoginModel;
 
 public class Board {
 private boolean DEBUG = true;
@@ -57,4 +57,10 @@ return ret;
         this.DEBUG = !this.DEBUG;
         return this.DEBUG;
     }
+
+    public String getSolution() {
+        return this.solution.toString();
+    }
+
+
 }
