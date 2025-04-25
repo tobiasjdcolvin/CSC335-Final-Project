@@ -1,4 +1,6 @@
-package model;
+package test.model;
+
+import model.LandingModel;
 
 import org.junit.Assert;
 import org.junit.Test;
