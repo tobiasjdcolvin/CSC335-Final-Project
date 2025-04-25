@@ -5,12 +5,11 @@ import java.awt.Color;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import model.LoserModel;
-import view.LoserView;
+import model.VictoryModel;
+import view.VictoryView;
 import view.Observer;
 
-
-class LoserModelTest {
+public class TestVictoryModel {
 
 	public class myObserver implements Observer{
         @Override
@@ -20,10 +19,10 @@ class LoserModelTest {
 	
 	myObserver myObserverInstance = new myObserver();
     String user = "meep";
-    LoserView myView = new LoserView("meep");
-    LoserModel myModel = new LoserModel(myView, user);
-    
-	@Test
+    VictoryView myView = new VictoryView("meep");
+    VictoryModel myModel = new VictoryModel(myView, user);
+
+    @Test
 	public void testConstructor() {
 		Assert.assertEquals(myModel.getUsername(), user);
 	}
