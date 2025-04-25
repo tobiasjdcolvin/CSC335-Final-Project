@@ -6,6 +6,7 @@ import view.LeaderView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class LeaderController implements ActionListener{
     private LeaderModel model;
@@ -29,5 +30,9 @@ public class LeaderController implements ActionListener{
 
     public void addObserver(Observer observer) {
         model.registerObserver(observer);
+    }
+
+    public ArrayList<String> getTopUsers() {
+        return model.getTopUsers();
     }
 }
