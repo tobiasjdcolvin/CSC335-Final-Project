@@ -3,7 +3,6 @@ package test.model;
 import model.Model;
 import org.junit.Test;
 import view.LoginView;
-import view.Observer;
 import view.TextLabel;
 import view.View;
 import model.LoginModel;
