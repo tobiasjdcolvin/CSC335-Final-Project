@@ -136,7 +136,7 @@ public class LoginModel {
         return this.observers.size();
     }
 
-    private static String hash(String password, String salt) {
+    public static String hash(String password, String salt) {
         password = password+salt;
         try {
             StringBuilder hash = new StringBuilder();
