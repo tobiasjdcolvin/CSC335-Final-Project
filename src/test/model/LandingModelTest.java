@@ -1,4 +1,6 @@
-package model;
+package test.model;
+
+import model.LandingModel;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,7 +9,7 @@ import view.Observer;
 
 import java.awt.*;
 
-public class TestLandingModel {
+public class LandingModelTest {
     public class myObserver implements Observer{
         @Override
         public void newText(String text, Color color) {

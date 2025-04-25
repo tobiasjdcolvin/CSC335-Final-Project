@@ -164,7 +164,7 @@ public class LoginModel {
     	return new int[] {users.get(username)[0], users.get(username)[1]};
     }
     
-    protected static void updateUserWinLoss(String username, int win, int loss) {
+    public static void updateUserWinLoss(String username, int win, int loss) {
     	users.get(username)[0] += win;
     	users.get(username)[1] += loss;
     	updateUserData(username);
