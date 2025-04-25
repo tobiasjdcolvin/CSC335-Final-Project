@@ -126,4 +126,7 @@ public class Model {
     public static String[] getGuesses() {
     	return guessList.clone();
     }
+    public String getSolution() {
+        return this.board.getSolution();
+    }
 }
