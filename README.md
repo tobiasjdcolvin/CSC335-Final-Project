@@ -2,7 +2,18 @@
 
 ## The design of our code:
 
-Lindsay Linds Linders Lindenmorph Lindzerz
+The project is a Wordle game that was heavily inspired by the design of
+Small Assignment 6, which had a GUI based on Model-View-Controller-Observer
+design model and Observer interface. The user interface is handled by the
+frontend (the view classes). The GUI, itself, was made with Swing.
+The backend reads and writes to a .csv file for storing user data.
+Additionally, the project implements a login component that uses
+salting and hashing for extra security. Escaping references are avoided when
+possible and, if absolutely necessary, handled with appropriate copies
+(with depth extending to as far as needed to prevent unwanted access to
+mutable objects). AI-generated code was used for some of the visual aspects
+of the GUI.
+
 
 ## How to run our code:
 - Clone this repository
