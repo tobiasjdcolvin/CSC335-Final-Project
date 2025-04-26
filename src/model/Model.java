@@ -20,7 +20,7 @@ public class Model {
     private ArrayList<Observer> observers;
     private Board board;
     private int guessCount = 0;
-    private static String[] guessList = new String[5];
+    private static String[] guessList;
 
     public Model(String username, View view) {
         this.currView = view;
@@ -36,6 +36,7 @@ public class Model {
 
         // create a board using the random word
         board = new Board(new Word(randWord), 5);
+        guessList = new String[5];
 
         this.observers = new ArrayList<Observer>();
     }
@@ -79,7 +80,7 @@ public class Model {
             	LoginModel.updateUserWinLoss(this.username,1,0);
                 return true;
             }
-    	} else{
+    	} else{ 
             lose();
         }
         return false;
