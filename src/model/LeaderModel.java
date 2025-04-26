@@ -49,18 +49,18 @@ public class LeaderModel {
             BufferedReader reader = new BufferedReader(new FileReader("src/store/UserData.csv"));
             String line;
             // This part skips the first line took a sec to figure out lol ts pmo
-            if ((line = reader.readLine()) != null) {
-            }
+            reader.readLine();
+
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length >= 3) {
+
                     String user = parts[0].trim();
                     int victories = Integer.parseInt(parts[1].trim());
                     if (!victoriesToUsers.containsKey(victories)) {
                         victoriesToUsers.put(victories, new ArrayList<>());
                     }
                     victoriesToUsers.get(victories).add(user);
-                }
+
             }
             reader.close();
         } catch (FileNotFoundException e) {
