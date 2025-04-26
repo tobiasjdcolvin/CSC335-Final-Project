@@ -5,15 +5,8 @@ import view.LeaderView;
 import view.Observer;
 import view.VictoryView;
 import view.View;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
+
 
 public class VictoryModel {
     private VictoryView currView;

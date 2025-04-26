@@ -42,7 +42,6 @@ public class View extends JFrame {
         // panel to contain each of the character labels to together create the string
         // I changed this so it fits the new 2d array
         // Found out on docs.oracle.com that there is a GridLayout perfect for our array
-        // I dont know how we want the style of the words to look so they are spread out wide asf rn lol
         JPanel labelPanel = new JPanel(new GridLayout(6,5,2,5));
         labelPanel.setBackground(Color.darkGray);
         textLabels = new TextLabel[6][5];
@@ -132,7 +131,6 @@ public class View extends JFrame {
 
 
     public void victory() {
-        // TODO Auto-generated method stub
         System.out.println("YOU WIN");
         this.dispose();
         VictoryView view = new VictoryView(username);    

@@ -4,8 +4,6 @@ import view.LandingView;
 import view.LeaderView;
 import view.Observer;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
-import java.util.Random;
 // Learned about in 345, I LOVE BSTS YIPPIE 
 import java.util.TreeMap;
 
@@ -48,7 +45,7 @@ public class LeaderModel {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/store/UserData.csv"));
             String line;
-            // This part skips the first line took a sec to figure out lol ts pmo
+            // This part skips the first line took a sec to figure out lol
             reader.readLine();
 
             while ((line = reader.readLine()) != null) {
@@ -66,7 +63,6 @@ public class LeaderModel {
         } catch (FileNotFoundException e) {
             System.out.println("UserData.csv not found!");
         } catch (IOException e) {
-            // DO SOMETHing
         }
 
         for (Map.Entry<Integer, ArrayList<String>> entry : victoriesToUsers.entrySet()) {
