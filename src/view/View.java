@@ -44,13 +44,16 @@ public class View extends JFrame {
         // Found out on docs.oracle.com that there is a GridLayout perfect for our array
         // I dont know how we want the style of the words to look so they are spread out wide asf rn lol
         JPanel labelPanel = new JPanel(new GridLayout(6,5,2,5));
-        labelPanel.setBackground(Color.darkGray);
+        labelPanel.setBackground(new java.awt.Color(40, 45, 55));
+        labelPanel.setBorder(BorderFactory.createMatteBorder(20,20,20,20,new java.awt.Color(20, 25, 35)));
         textLabels = new TextLabel[6][5];
         for (int row = 0; row < 6; row++){
             for (int col = 0; col < 5; col++){
                 TextLabel label = new TextLabel();
                 label.setForeground(Color.WHITE);
-                label.setFont(new Font("Arial", Font.PLAIN, 18));
+                label.setBackground(new java.awt.Color(40, 45, 55));
+                label.setAlignmentX(Component.CENTER_ALIGNMENT);
+                label.setFont(new Font("Arial", Font.BOLD, 24));
                 textLabels[row][col] = label;
                 labelPanel.add(label);
                 controller.addObserver(label);
@@ -59,18 +62,21 @@ public class View extends JFrame {
 
         // center content panel (Layout is AI generated)
         JPanel centerPanel = new JPanel();
-        centerPanel.setBackground(Color.darkGray);
+        centerPanel.setBackground(new java.awt.Color(20, 25, 35));
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // this layout is AI generated.
 
-        JLabel titleLabel = new JLabel("Javordle (Java Wordle)");
-        titleLabel.setForeground(Color.LIGHT_GRAY);
-        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        JLabel2D titleLabel = new JLabel2D("Javordle (Java Wordle)");
+        titleLabel.setForeground(new java.awt.Color(219, 237, 247));
+        titleLabel.setOutlineColor(new java.awt.Color(119, 137, 147));
+        titleLabel.setStroke(new BasicStroke(2f));
+        titleLabel.setFont(new Font("Stencil", Font.PLAIN, 40));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20))); // AI generated
         centerPanel.add(titleLabel);
 
         // warrning label formatting (lets keep the typo its funny)
-        warrningLabel.setForeground(Color.LIGHT_GRAY);
-        warrningLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        warrningLabel.setForeground(Color.RED);
+        warrningLabel.setFont(new Font("Arial", Font.BOLD, 18));
         warrningLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // this alignment is AI generated.
         centerPanel.add(warrningLabel);
 
@@ -79,11 +85,11 @@ public class View extends JFrame {
 
         // bottom panel (layout is AI generated)
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setBackground(Color.darkGray);
+        bottomPanel.setBackground(new java.awt.Color(20, 25, 35));
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS)); // layout is AI generated
 
         textField = new JTextField(20);
-        textField.setMaximumSize(new Dimension(200, 30));
+        textField.setMaximumSize(new Dimension(200, 40));
         textField.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
         JButton submit = new JButton("Submit");
@@ -100,10 +106,11 @@ public class View extends JFrame {
         back.setAlignmentX(Component.CENTER_ALIGNMENT); // alignment is AI generated
 
         bottomPanel.add(textField);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 20))); // this line is AI generated
         bottomPanel.add(submit);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 10))); // this line is AI generated
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 20))); // this line is AI generated
         bottomPanel.add(back);
+        bottomPanel.add(Box.createRigidArea(new Dimension(0, 20))); // AI generated
 
 
         // add panels to main panel
@@ -122,7 +129,7 @@ public class View extends JFrame {
     }
 
     public JLabel getWarrningLabel(){
-        warrningLabel.setForeground(Color.white);
+        warrningLabel.setForeground(Color.RED);
         return this.warrningLabel;
     }
 
