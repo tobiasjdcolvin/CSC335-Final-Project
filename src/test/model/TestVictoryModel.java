@@ -51,4 +51,6 @@ public class TestVictoryModel {
         myModel.deregisterObserver(myObserverInstance);
     }
 
+
+
 }
