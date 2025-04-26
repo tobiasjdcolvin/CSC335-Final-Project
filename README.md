@@ -8,5 +8,6 @@ Lindsay Linds Linders Lindenmorph Lindzerz
 - Clone this repository
 - Download IntelliJ Community Edition
 - Open the repository inside IntelliJ
-- Add JUnit 4 and 5 to your classpath
+- Add JUnit 4 (junit:junit:4.13.1) to classpath
+- Add JUnit 5 (org.junit.jupiter:junit-jupiter:5.8.1) to classpath
 - Run Main.java
