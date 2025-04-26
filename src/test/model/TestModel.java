@@ -50,6 +50,16 @@ public class TestModel {
     }
 
     @Test
+    public void testGetGuesses() {
+        model.registerObserver(new TextLabel());
+        model.registerObserver(new TextLabel());
+        model.registerObserver(new TextLabel());
+        model.registerObserver(new TextLabel());
+        model.registerObserver(new TextLabel());
+        Model.getGuesses();
+    }
+
+    @Test
     public void testCorrect() {
         model.registerObserver(new TextLabel());
         model.registerObserver(new TextLabel());
