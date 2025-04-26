@@ -1,17 +1,12 @@
 package view;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import java.awt.image.BufferedImage;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
-import java.awt.Graphics2D;
+
 
 import model.LoginModel;
 import controller.LoginController;

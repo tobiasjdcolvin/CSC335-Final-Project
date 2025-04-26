@@ -1,5 +1,5 @@
 package model;
-import model.LoginModel;
+
 
 public class Board {
 private boolean DEBUG = true;
